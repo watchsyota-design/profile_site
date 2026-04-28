@@ -1,4 +1,9 @@
 /* ① 色のルールブック（ライトモードとダークモード） */
+html, body{
+    overflow-x: hidden;
+    width: 100%;
+}
+
 :root {
     --bg-color: #e2e8f0;
     --text-color: #333333;
@@ -31,9 +36,10 @@
     display: flex;
     justify-content: center;
     align-items: flex-start;
-    overflow-y: auto;
-    overflow-x: hidden; /* 横のはみ出し（背景の玉）は無視して隠す！ */
+    /* overflow-y: auto;
+    overflow-x: hidden; 横のはみ出し（背景の玉）は無視して隠す！ */
     transition: background-color 0.5s ease;
+    position: relative; /*弾の配置の基準をはっきりさせる
   }
   
   /* ③ 背景の玉（これがあるからガラスが透けて見える！） */
