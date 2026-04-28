@@ -1,4 +1,4 @@
-/* ① 色のルールブック（ライトモードとダークモード） */
+{box-sizing: border-box;}
 html, body{
     overflow-x: hidden;
     width: 100%;
@@ -156,12 +156,36 @@ html, body{
 /* --- [1] デフォルト（スマホなどの狭い画面）の設定 --- */
 #theme-toggle {
     /* スマホでは固定配置を解除して、コンテナ内の上部に配置 */
-    position: static;
+    position: relative;
+    top: 0;
+    right:auto;
+    left: auto;
     display: block;
     width: 80%; /* 他のリンクボタンと横幅を合わせる */
-    margin: 0 auto 30px auto; /* 中央寄せにし、下のアイコンとの間隔を十分に空ける */
+    /*margin: 0 auto 30px auto;  中央寄せにし、下のアイコンとの間隔を十分に空ける */
     padding: 12px 24px;
     /* (glass-btn の共通スタイルを引き継ぐため、他は指定しない) */
+
+    /* 見た目の調整 */
+    display: inline-block; /* 真ん中に寄せやすくする */
+    max-width: 300px; /* 広がりすぎないように制限 */
+    margin: 10px auto 30px auto;
+  
+    /* 判定をボタンの中に閉じ込める魔法 */
+    overflow: hidden;
+    isolation: isolate;
+  }
+
+  /* 3. パソコン（広い画面）の時だけ右上に飛ばす設定 */
+@media (min-width: 768px) {
+    #theme-toggle {
+      position: fixed; /* 画面に固定 */
+      top: 20px;
+      right: 20px;
+      width: auto; /* 幅を文字数に合わせる */
+      margin: 0;
+      z-index: 100;
+    }
   }
   
   /* ガラスコンテナ内のヘッダー（ボタンを囲んでいる場所）の余白を調整 */
