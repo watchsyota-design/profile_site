@@ -119,6 +119,9 @@ html, body{
     font-size: 1rem;
     position: relative;
     overflow: hidden;
+    -webkit-mask-image: -webkit-radial-gradient(white, black); /* Safariでのハミ出しを強制的にカットする */
+    mask-image: radial-gradient(white, black);
+    isolation: isolate; /* 他の重なり（背景の玉など）と光が混ざらないように隔離する */
   }
 
   /* 光の筋を作る */
