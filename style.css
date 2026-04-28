@@ -39,7 +39,7 @@ html, body{
     /* overflow-y: auto;
     overflow-x: hidden; 横のはみ出し（背景の玉）は無視して隠す！ */
     transition: background-color 0.5s ease;
-    position: relative; /*弾の配置の基準をはっきりさせる
+    position: relative; /*弾の配置の基準をはっきりさせる*/
   }
   
   /* ③ 背景の玉（これがあるからガラスが透けて見える！） */
@@ -61,8 +61,20 @@ html, body{
     bottom: -100px; right: -50px;
   }
   
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px); /* 30px下から開始 */
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0); /* 本来の位置へ */
+    }
+  }
+
   /* ④ メインのすりガラスの箱 */
   .glass-container {
+    animation: fadeInUp 1.2s ease-out; /* 1.2秒かけて実行*/
     background: var(--glass-bg);
     backdrop-filter: blur(15px); /* ★ここがすりガラスにする最大の魔法！★ */
     -webkit-backdrop-filter: blur(15px); /* スマホ対応 */
@@ -105,6 +117,21 @@ html, body{
     margin: 10px auto;
     box-sizing: border-box;
     font-size: 1rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* 光の筋を作る */
+.glass-btn::after {
+    content: "";
+    position: absolute;
+    top: -50%;
+    left: -60%;
+    width: 20%;
+    height: 200%;
+    background: rgba(255, 255, 255, 0.3);
+    transform: rotate(30deg);
+    transition: all 0.5s;
   }
   
   .glass-btn:hover {
@@ -113,6 +140,11 @@ html, body{
     box-shadow: 0 5px 15px var(--glass-shadow);
   }
   
+/* ホバーした時に光を右に走らせる */
+.glass-btn:hover::after {
+    left: 120%;
+  }
+
   ul.links {
     list-style: none;
     padding: 0;
