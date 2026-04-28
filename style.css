@@ -195,6 +195,13 @@ html, body{
     isolation: isolate;
   }
 
+  @media (max-width: 480px) {
+    .profile p {
+      font-size: 3.5vw; /* 画面幅に合わせて文字サイズを自動調整（3.5%の幅） */
+      white-space: nowrap;
+    }
+  }
+
   /* 3. パソコン（広い画面）の時だけ右上に飛ばす設定 */
 @media (min-width: 768px) {
     #theme-toggle {
