@@ -23,15 +23,15 @@
   /* ② 全体の設定 */
   body {
     margin: 0;
-    padding: 0;
+    padding: 40px 0;
     font-family: 'Helvetica Neue', Arial, sans-serif;
     background-color: var(--bg-color);
     color: var(--text-color);
     min-height: 100vh;
     display: flex;
     justify-content: center;
-    align-items: center;
-    overflow: hidden;
+    align-items: flex-start;
+    overflow-y: auto;
     transition: background-color 0.5s ease;
   }
   
@@ -106,4 +106,12 @@
   ul.links {
     list-style: none;
     padding: 0;
+  }
+  #theme-toggle {
+    position: fixed; /* 画面に対して固定 */
+    top: 20px;
+    right: 20px;
+    width: auto; /* 幅を自動にする */
+    z-index: 100; /* 一番手前に表示 */
+    padding: 10px 20px;
   }
