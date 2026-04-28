@@ -1,97 +1,109 @@
-/* 全体の基本的な見た目 */
-body {
-    font-family: sans-serif;
-    text-align: center;
-    background-color: #f4f4f9;
-    color: #333;
+/* ① 色のルールブック（ライトモードとダークモード） */
+:root {
+    --bg-color: #e2e8f0;
+    --text-color: #333333;
+    --glass-bg: rgba(255, 255, 255, 0.4); /* 半透明の白 */
+    --glass-border: rgba(255, 255, 255, 0.6);
+    --glass-shadow: rgba(0, 0, 0, 0.1);
+    --shape1: #ff9a9e; /* 背景の玉の色（ピンク） */
+    --shape2: #a18cd1; /* 背景の玉の色（紫） */
+  }
+  
+  /* ダークモードになった時の色のルール */
+  .dark-mode {
+    --bg-color: #0f172a;
+    --text-color: #f8fafc;
+    --glass-bg: rgba(30, 41, 59, 0.5); /* 半透明の黒 */
+    --glass-border: rgba(255, 255, 255, 0.1);
+    --glass-shadow: rgba(0, 0, 0, 0.5);
+    --shape1: #3b82f6; /* 背景の玉の色（青） */
+    --shape2: #8b5cf6; /* 背景の玉の色（深紫） */
+  }
+  
+  /* ② 全体の設定 */
+  body {
     margin: 0;
-    padding: 20px;
-    /* この1行は、後で作るダークモードが「フワッ」と切り替わるための魔法です */
-    transition: background-color 0.3s, color 0.3s;
-}
-
-/* プロフィールの白い箱 */
-.profile-section {
-    background-color: white;
-    max-width: 400px;
-    margin: 0 auto 20px auto;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* ふんわり影をつける */
-}
-
-/* アイコン画像を丸くする、そして大きさを指定する */
-.profile-section img {
-    /* ↓ここから追加 */
-    width: 150px;       /* 横幅を150ピクセルにする */
-    height: 150px;      /* 高さを150ピクセルにする */
-    object-fit: cover;  /* 正方形じゃない写真でも、縦横比を保っていい感じに切り抜く魔法の1行 */
-    /* ↑ここまで追加 */
-
-    border-radius: 50%; /* これは元々あった行（丸くする） */
-}
-
-/* リンクボタンの箱 */
-.link-section {
-    max-width: 400px;
-    margin: 0 auto;
-}
-
-/* リストの黒い点を消す */
-.link-section ul {
-    list-style-type: none;
     padding: 0;
-}
-
-.link-section li {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    transition: background-color 0.5s ease;
+  }
+  
+  /* ③ 背景の玉（これがあるからガラスが透けて見える！） */
+  .bg-shape {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(80px); /* めちゃくちゃぼかす */
+    z-index: -1;
+    transition: background 0.5s ease;
+  }
+  .shape1 {
+    width: 300px; height: 300px;
+    background: var(--shape1);
+    top: -50px; left: -50px;
+  }
+  .shape2 {
+    width: 400px; height: 400px;
+    background: var(--shape2);
+    bottom: -100px; right: -50px;
+  }
+  
+  /* ④ メインのすりガラスの箱 */
+  .glass-container {
+    background: var(--glass-bg);
+    backdrop-filter: blur(15px); /* ★ここがすりガラスにする最大の魔法！★ */
+    -webkit-backdrop-filter: blur(15px); /* スマホ対応 */
+    border: 1px solid var(--glass-border);
+    box-shadow: 0 8px 32px 0 var(--glass-shadow);
+    border-radius: 20px;
+    padding: 40px;
+    width: 90%;
+    max-width: 450px;
+    text-align: center;
+    z-index: 1;
+  }
+  
+  /* ⑤ アイコン画像 */
+  .icon {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid var(--glass-border);
     margin-bottom: 10px;
-}
-
-/* ボタンの見た目 */
-.link-section a {
-    display: block;
-    padding: 15px;
-    background-color: #007bff;
-    color: white;
+  }
+  
+  /* ⑥ ボタンとリンク（これらもすりガラス風） */
+  .glass-btn {
+    display: inline-block;
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    padding: 12px 24px;
+    color: var(--text-color);
     text-decoration: none;
-    border-radius: 5px;
+    border-radius: 30px;
     font-weight: bold;
-    transition: background-color 0.2s;
-}
-
-/* マウスが乗った時にボタンの色を少し暗くする */
-.link-section a:hover {
-    background-color: #0056b3;
-}
-
-/* スマホ対応（レスポンシブデザイン） */
-/* 画面の幅が600px以下（スマホサイズ）になったら、横幅を画面の90%に広げる */
-@media (max-width: 600px) {
-    .profile-section, .link-section {
-        max-width: 90%;
-    }
-}
-
-/* ダークモード切り替えボタンの見た目 */
-#darkModeBtn {
-    display: block;
-    margin: 0 auto 20px auto;
-    padding: 10px 20px;
-    background-color: #333;
-    color: white;
-    border: none;
-    border-radius: 5px;
     cursor: pointer;
-}
-
-/* ダークモード時のデザイン（bodyに .dark-mode が付いた時のルール） */
-body.dark-mode {
-    background-color: #222;
-    color: #f4f4f9;
-}
-
-/* ダークモード時の白い箱の色の変化 */
-body.dark-mode .profile-section {
-    background-color: #444;
-    color: #f4f4f9;
-}
+    transition: all 0.3s ease;
+    width: 80%;
+    margin: 10px auto;
+    box-sizing: border-box;
+    font-size: 1rem;
+  }
+  
+  .glass-btn:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateY(-3px); /* マウスを乗せると少し浮く */
+    box-shadow: 0 5px 15px var(--glass-shadow);
+  }
+  
+  ul.links {
+    list-style: none;
+    padding: 0;
+  }

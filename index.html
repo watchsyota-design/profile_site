@@ -4,28 +4,35 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>マイプロフィール</title>
+        <title>My Profile</title>
         <link rel="stylesheet" href="style.css">
     </head>
 </head>
 <body>
-    <button id="darkModeBtn">ダークモード切り替え</button>
-    <h1>プロフィール</h1>
-        
-    <div class="profile-section">
-         <img src="kari_icon.jpg" alt="アイコン画像">
-        <h2>あなたの名前</h2>
-        <p>IT技術の勉強中です。最近はスト6（サガットでダイヤ3！）や、NBAを楽しんでいます。</p>
+    <div class="bg-shape shape1"></div>
+  <div class="bg-shape shape2"></div>
+
+  <div class="glass-container">
+    <header>
+      <button id="theme-toggle" class="glass-btn">🌙 ダークモード</button>
+    </header>
+
+    <div class="profile">
+      <img src="kari_icon.jpg" alt="プロフィールアイコン" class="icon">
+      <h1>Your Name</h1>
+      <p>
+        情報系の大学でWeb開発やAWSを勉強中です！<br>
+        休日はスト6をしたり，NBAを見ています。
+      </p>
     </div>
-    
-    <div class="link-section">
-        <h3>リンク集</h3>
-        <ul>
-            <li><a href="https://github.com/watchsyota-design">GitHub</a></li>
-            <li><a href="#">X (旧Twitter)</a></li>
-            <li><a href="#">ブログ</a></li>
-        </ul>
-    </div>
-    <script src="script.js"></script>
+
+    <ul class="links">
+      <li><a href="https://github.com/watchsyota-design/profile_site" class="glass-btn">GitHub</a></li>
+      <li><a href="#" class="glass-btn">何かしら</a></li>
+      <li><a href="#" class="glass-btn">X (Twitter)</a></li>
+    </ul>
+  </div>
+
+  <script src="script.js"></script>
 </body>
 </html>
