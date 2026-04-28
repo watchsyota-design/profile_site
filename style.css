@@ -1,0 +1,97 @@
+/* 全体の基本的な見た目 */
+body {
+    font-family: sans-serif;
+    text-align: center;
+    background-color: #f4f4f9;
+    color: #333;
+    margin: 0;
+    padding: 20px;
+    /* この1行は、後で作るダークモードが「フワッ」と切り替わるための魔法です */
+    transition: background-color 0.3s, color 0.3s;
+}
+
+/* プロフィールの白い箱 */
+.profile-section {
+    background-color: white;
+    max-width: 400px;
+    margin: 0 auto 20px auto;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* ふんわり影をつける */
+}
+
+/* アイコン画像を丸くする、そして大きさを指定する */
+.profile-section img {
+    /* ↓ここから追加 */
+    width: 150px;       /* 横幅を150ピクセルにする */
+    height: 150px;      /* 高さを150ピクセルにする */
+    object-fit: cover;  /* 正方形じゃない写真でも、縦横比を保っていい感じに切り抜く魔法の1行 */
+    /* ↑ここまで追加 */
+
+    border-radius: 50%; /* これは元々あった行（丸くする） */
+}
+
+/* リンクボタンの箱 */
+.link-section {
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+/* リストの黒い点を消す */
+.link-section ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.link-section li {
+    margin-bottom: 10px;
+}
+
+/* ボタンの見た目 */
+.link-section a {
+    display: block;
+    padding: 15px;
+    background-color: #007bff;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: background-color 0.2s;
+}
+
+/* マウスが乗った時にボタンの色を少し暗くする */
+.link-section a:hover {
+    background-color: #0056b3;
+}
+
+/* スマホ対応（レスポンシブデザイン） */
+/* 画面の幅が600px以下（スマホサイズ）になったら、横幅を画面の90%に広げる */
+@media (max-width: 600px) {
+    .profile-section, .link-section {
+        max-width: 90%;
+    }
+}
+
+/* ダークモード切り替えボタンの見た目 */
+#darkModeBtn {
+    display: block;
+    margin: 0 auto 20px auto;
+    padding: 10px 20px;
+    background-color: #333;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* ダークモード時のデザイン（bodyに .dark-mode が付いた時のルール） */
+body.dark-mode {
+    background-color: #222;
+    color: #f4f4f9;
+}
+
+/* ダークモード時の白い箱の色の変化 */
+body.dark-mode .profile-section {
+    background-color: #444;
+    color: #f4f4f9;
+}
