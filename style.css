@@ -209,10 +209,16 @@ html, body{
   }
 
   @media (max-width: 480px) {
+    /* ① 白い箱（ガラス）の内側の余白を減らして、文字が使える幅を広げる */
+    .glass-container {
+        padding: 25px 15px; /* 上下25px, 左右15pxに減らす（元は40px） */
+    }
     .profile p {
-      font-size: 1rem; /* 画面幅に合わせて文字サイズを自動調整（3.5%の幅） */
-      white-space: nowrap;
-      margin: 8px 0;
+      font-size: 3.2vw;
+      letter-spacing: -0.03em;
+      display: block; 
+      width: 100%;
+      text-align: center;
     }
   }
 
