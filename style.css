@@ -6,6 +6,23 @@ html, body{
     width: 100%;
 }
 
+.profile p {
+    /* ① 絶対に改行させない */
+    white-space: nowrap; 
+  
+    /* ② はみ出た場合に、箱を突き抜けずに「横スクロール」で見れるようにする */
+    overflow-x: auto;
+    
+    /* ③ スクロールバーを隠しておしゃれにする（お好みで） */
+    -ms-overflow-style: none; /* IE用 */
+    scrollbar-width: none;    /* Firefox用 */
+  }
+  
+  /* Chrome, Safari用（スクロールバーを非表示に） */
+  .profile p::-webkit-scrollbar {
+    display: none;
+  }
+
 :root {
     --bg-color: #e2e8f0;
     --text-color: #333333;
