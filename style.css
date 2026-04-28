@@ -27,7 +27,7 @@ html, body{
     overflow: visible;
 
     /* ④ 文字サイズを画面幅に合わせて自動で変える魔法 */
-    font-size: 3.8vw;
+    font-size: clamp(12px, 3.8vw, 18px);
 }
 
   
@@ -210,8 +210,9 @@ html, body{
 
   @media (max-width: 480px) {
     .profile p {
-      font-size: 3.5vw; /* 画面幅に合わせて文字サイズを自動調整（3.5%の幅） */
+      font-size: 1rem; /* 画面幅に合わせて文字サイズを自動調整（3.5%の幅） */
       white-space: nowrap;
+      margin: 8px 0;
     }
   }
 
