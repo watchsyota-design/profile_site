@@ -16,7 +16,20 @@ html, body{
     /* ③ スクロールバーを隠しておしゃれにする（お好みで） */
     -ms-overflow-style: none; /* IE用 */
     scrollbar-width: none;    /* Firefox用 */
-  }
+
+    /* ① 行の間隔を小さくする（上下の隙間を調整） */
+    margin: 5px 0; 
+  
+    /* ② 絶対に改行させない */
+    white-space: nowrap;
+
+    /* ③ 横スクロールをオフにする（常に見えるようにする） */
+    overflow: visible;
+
+    /* ④ 文字サイズを画面幅に合わせて自動で変える魔法 */
+    font-size: 3.8vw;
+}
+
   
   /* Chrome, Safari用（スクロールバーを非表示に） */
   .profile p::-webkit-scrollbar {
