@@ -67,6 +67,9 @@
     max-width: 450px;
     text-align: center;
     z-index: 1;
+
+    box-sizing: border-box; /* パディングを横幅に含める魔法 */
+    margin: 0 auto; /* 確実に左右のド真ん中に配置する */
   }
   
   /* ⑤ アイコン画像 */
@@ -107,11 +110,41 @@
     list-style: none;
     padding: 0;
   }
-  #theme-toggle {
-    position: fixed; /* 画面に対して固定 */
-    top: 20px;
-    right: 20px;
-    width: auto; /* 幅を自動にする */
-    z-index: 100; /* 一番手前に表示 */
-    padding: 10px 20px;
+
+/* --- [1] デフォルト（スマホなどの狭い画面）の設定 --- */
+#theme-toggle {
+    /* スマホでは固定配置を解除して、コンテナ内の上部に配置 */
+    position: static;
+    display: block;
+    width: 80%; /* 他のリンクボタンと横幅を合わせる */
+    margin: 0 auto 30px auto; /* 中央寄せにし、下のアイコンとの間隔を十分に空ける */
+    padding: 12px 24px;
+    /* (glass-btn の共通スタイルを引き継ぐため、他は指定しない) */
   }
+  
+  /* ガラスコンテナ内のヘッダー（ボタンを囲んでいる場所）の余白を調整 */
+  .glass-container header {
+    margin-bottom: 0; /* ボタンの下の余白をなくす（上のmarginで調整するため） */
+  }
+  /* ------------------------------------------------ */
+  
+  
+  /* --- [2] PC（広い画面）向けの魔法（メディアクエリ） --- */
+  @media (min-width: 768px) {
+    /* 画面幅が 768px（一般的なタブレット/PC）以上のときだけ、以下の設定を適用（上書き）する */
+    #theme-toggle {
+      position: fixed; /* パソコンでは、当初の目的通り右上に固定配置 */
+      top: 20px;
+      right: 20px;
+      width: auto; /* 幅を自動にする */
+      z-index: 100; /* 一番手前に表示 */
+      padding: 10px 20px;
+      margin: 0; /* 固定配置なのでマージンはリセット */
+    }
+  
+    /* パソコンではヘッダーの下に余白を作り、コンテナ内をスッキリさせる */
+    .glass-container header {
+      margin-bottom: 40px; 
+    }
+  }
+  /* ------------------------------------------------- */
