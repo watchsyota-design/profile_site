@@ -32,6 +32,7 @@
     justify-content: center;
     align-items: flex-start;
     overflow-y: auto;
+    overflow-x: hidden; /* 横のはみ出し（背景の玉）は無視して隠す！ */
     transition: background-color 0.5s ease;
   }
   
