@@ -29,7 +29,7 @@ contactForm.addEventListener('submit', async (e) => {
 
     // 画面上のメッセージを「考え中」に変える
     responseMessage.textContent = 'AI翔太が考え中...（初回は30秒ほどかかる場合があります）';
-    responseMessage.style.color = '#333';
+    responseMessage.style.color = 'var(--text-color)';
 
     try {
         // 【重要】Renderに公開した /chat 窓口にデータを送る
@@ -50,7 +50,7 @@ contactForm.addEventListener('submit', async (e) => {
             
             // 画面にAIの返信を表示！
             responseMessage.textContent = data.reply;
-            responseMessage.style.color = '#007bff'; // AIの返信は青色にするなど
+            responseMessage.style.color = 'var(--text-color)'; // AIの返信は青色にするなど
             
             contactForm.reset(); // 入力欄をきれいにする
         } else {
