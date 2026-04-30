@@ -30,7 +30,7 @@ contactForm.addEventListener('submit', async (e) => {
 
   try {
     // 【重要】ここでPythonのAPI（http://127.0.0.1:8000/contact）にデータを投げつける！
-    const response = await fetch('http://127.0.0.1:8000/contact', {
+    const response = await fetch('https://portfolio-api-syota.onrender.com/contact', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
