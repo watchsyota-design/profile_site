@@ -61,4 +61,3 @@ contactForm.addEventListener('submit', async (e) => {
         responseMessage.textContent = 'サーバーに接続できませんでした。Renderが起動しているか確認してください。';
     }
 });
-);
