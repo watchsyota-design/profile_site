@@ -260,3 +260,30 @@ html, body{
     }
   }
   /* ------------------------------------------------- */
+
+  /* コンタクトフォームのスタイル */
+.contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 15px;
+  }
+  
+  .contact-form input,
+  .contact-form textarea {
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid var(--glass-border);
+    /* 背景を少しだけ透過させてガラスに馴染ませる */
+    background: rgba(255, 255, 255, 0.2); 
+    color: var(--text-color);
+    font-family: inherit;
+    font-size: 1rem;
+  }
+  
+  /* ダークモードの時の入力欄の色調整 */
+  .dark-mode .contact-form input,
+  .dark-mode .contact-form textarea {
+    background: rgba(0, 0, 0, 0.2);
+    color: white;
+  }
