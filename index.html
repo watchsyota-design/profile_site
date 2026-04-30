@@ -30,22 +30,24 @@
 
       <hr style="border: none; border-top: 1px solid var(--glass-border); margin: 30px 0;">
       
-      <div class="contact-section">
-        <h3>Gemini搭載：AI翔太と話す</h3>
-        <form id="contact-form" class="contact-form">
-          <input type="text" id="sender-name" placeholder="お名前" required>
-          <textarea id="sender-message" placeholder="メッセージ" rows="3" required></textarea>
-          <button type="submit" class="glass-btn">送信する</button>
-        </form>
-        <!-- APIからの返事を表示する場所 -->
-        <p id="response-message" style="margin-top: 10px; font-size: 0.9rem;"></p>
-      </div>
-
     <ul class="links">
       <li><a href="https://github.com/watchsyota-design/profile_site" class="glass-btn">GitHub</a></li>
       <li><a href="#" class="glass-btn">何かしら</a></li>
       <li><a href="#" class="glass-btn">X (Twitter)</a></li>
     </ul>
+  </div>
+
+  <hr style="border: none; border-top: 1px solid var(--glass-border); margin: 30px 0;">
+
+  <div class="contact-section">
+    <h3>Gemini搭載：AI翔太と話す</h3>
+    <form id="contact-form" class="contact-form">
+      <input type="text" id="sender-name" placeholder="お名前" required>
+      <textarea id="sender-message" placeholder="例：スト6のメインキャラは？" rows="3" required></textarea>
+      <button type="submit" class="glass-btn">AIに質問する</button>
+    </form>
+    <!-- APIからの返事を表示する場所 -->
+    <p id="response-message" style="margin-top: 10px; font-size: 0.9rem;"></p>
   </div>
 
   <script src="script.js"></script>
