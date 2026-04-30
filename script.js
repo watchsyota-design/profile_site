@@ -19,35 +19,46 @@ const contactForm = document.getElementById('contact-form');
 const responseMessage = document.getElementById('response-message');
 
 // 送信ボタンが押されたときの処理
+// 送信ボタンが押されたときの処理（ここをまるごと書き換え！）
 contactForm.addEventListener('submit', async (e) => {
-  e.preventDefault(); // 画面がリロードされるのを防ぐ（超重要！）
+    e.preventDefault(); // 画面リロードを阻止
 
-  // 入力された名前とメッセージを取得
-  const name = document.getElementById('sender-name').value;
-  const message = document.getElementById('sender-message').value;
+    // 入力された名前とメッセージを取得
+    const name = document.getElementById('sender-name').value;
+    const message = document.getElementById('sender-message').value;
 
-  responseMessage.textContent = '送信中...';
+    // 画面上のメッセージを「考え中」に変える
+    responseMessage.textContent = '翔太のAIが考え中...（初回は30秒ほどかかる場合があります）';
+    responseMessage.style.color = '#333';
 
-  try {
-    // 【重要】ここでPythonのAPIにデータを投げつける！
-    const response = await fetch('https://portfolio-api-syota.onrender.com/contact', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      // データをJSON文字列に変換して送る
-      body: JSON.stringify({ name: name, message: message }),
-    });
+    try {
+        // 【重要】Renderに公開した /chat 窓口にデータを送る
+        const response = await fetch('https://portfolio-api-syota.onrender.com/chat', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            // 名前とメッセージを合体させてAIに送る
+            body: JSON.stringify({ 
+                message: `送信者名:${name}さんからの質問です。内容：${message}` 
+            }),
+        });
 
-    if (response.ok) {
-      // APIから「受け取ったよ！」という返事（JSON）が返ってきたら読み解く
-      const result = await response.json();
-      responseMessage.textContent = result.reply; // 画面に返事を表示！
-      contactForm.reset(); // 入力欄を空に戻す
-    } else {
-      responseMessage.textContent = 'エラーが発生しました。';
+        if (response.ok) {
+            // AIからの返答（reply）を受け取る
+            const data = await response.json();
+            
+            // 画面にAIの返信を表示！
+            responseMessage.textContent = data.reply;
+            responseMessage.style.color = '#007bff'; // AIの返信は青色にするなど
+            
+            contactForm.reset(); // 入力欄をきれいにする
+        } else {
+            responseMessage.textContent = 'ごめんなさい、AIがちょっと休憩中のようです。';
+        }
+    } catch (error) {
+        console.error("通信エラー:", error);
+        responseMessage.textContent = 'サーバーに接続できませんでした。Renderが起動しているか確認してください。';
     }
-  } catch (error) {
-    responseMessage.textContent = 'サーバーに接続できません。PythonのAPIが起動しているか確認してください。';
-  }
 });
+);
