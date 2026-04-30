@@ -1,63 +1,8 @@
 * {
     box-sizing: border-box;
   }
-html, body{
-    overflow-x: hidden;
-    width: 100%;
-}
-
-.profile p {
-    /* ① 絶対に改行させない */
-    white-space: nowrap; 
   
-    /* ② はみ出た場合に、箱を突き抜けずに「横スクロール」で見れるようにする */
-    overflow-x: auto;
-    
-    /* ③ スクロールバーを隠しておしゃれにする（お好みで） */
-    -ms-overflow-style: none; /* IE用 */
-    scrollbar-width: none;    /* Firefox用 */
-
-    /* ① 行の間隔を小さくする（上下の隙間を調整） */
-    margin: 5px 0; 
-  
-    /* ② 絶対に改行させない */
-    white-space: nowrap;
-
-    /* ③ 横スクロールをオフにする（常に見えるようにする） */
-    overflow: visible;
-
-    /* ④ 文字サイズを画面幅に合わせて自動で変える魔法 */
-    font-size: clamp(12px, 3.8vw, 18px);
-}
-
-  
-  /* Chrome, Safari用（スクロールバーを非表示に） */
-  .profile p::-webkit-scrollbar {
-    display: none;
-  }
-
-:root {
-    --bg-color: #e2e8f0;
-    --text-color: #333333;
-    --glass-bg: rgba(255, 255, 255, 0.4); /* 半透明の白 */
-    --glass-border: rgba(255, 255, 255, 0.6);
-    --glass-shadow: rgba(0, 0, 0, 0.1);
-    --shape1: #ff9a9e; /* 背景の玉の色（ピンク） */
-    --shape2: #a18cd1; /* 背景の玉の色（紫） */
-  }
-  
-  /* ダークモードになった時の色のルール */
-  .dark-mode {
-    --bg-color: #0f172a;
-    --text-color: #f8fafc;
-    --glass-bg: rgba(30, 41, 59, 0.5); /* 半透明の黒 */
-    --glass-border: rgba(255, 255, 255, 0.1);
-    --glass-shadow: rgba(0, 0, 0, 0.5);
-    --shape1: #3b82f6; /* 背景の玉の色（青） */
-    --shape2: #8b5cf6; /* 背景の玉の色（深紫） */
-  }
-  
-  /* ② 全体の設定 */
+  /* ② 全体の設定（htmlのoverflowを消してここにまとめることでスクロールバー1本化！） */
   body {
     margin: 0;
     padding: 40px 0;
@@ -68,17 +13,52 @@ html, body{
     display: flex;
     justify-content: center;
     align-items: flex-start;
-    /* overflow-y: auto;
-    overflow-x: hidden; 横のはみ出し（背景の玉）は無視して隠す！ */
+    overflow-x: hidden; /* はみ出し（背景の玉）は無視して隠す！ */
     transition: background-color 0.5s ease;
-    position: relative; /*弾の配置の基準をはっきりさせる*/
+    position: relative; /* 弾の配置の基準をはっきりさせる */
   }
   
-  /* ③ 背景の玉（これがあるからガラスが透けて見える！） */
+  /* ダブりを解消してスッキリさせたプロフィールの文字設定 */
+  .profile p {
+    margin: 5px 0; 
+    white-space: nowrap; /* ① 絶対に改行させない */
+    overflow-x: auto;    /* ② はみ出た場合は横スクロール */
+    -ms-overflow-style: none; /* IE用 */
+    scrollbar-width: none;    /* Firefox用 */
+    font-size: clamp(12px, 3.8vw, 18px); /* 文字サイズを画面幅に合わせて自動で変える */
+  }
+  
+  /* Chrome, Safari用（スクロールバーを非表示に） */
+  .profile p::-webkit-scrollbar {
+    display: none;
+  }
+  
+  :root {
+    --bg-color: #e2e8f0;
+    --text-color: #333333;
+    --glass-bg: rgba(255, 255, 255, 0.4);
+    --glass-border: rgba(255, 255, 255, 0.6);
+    --glass-shadow: rgba(0, 0, 0, 0.1);
+    --shape1: #ff9a9e;
+    --shape2: #a18cd1;
+  }
+  
+  /* ダークモードになった時の色のルール */
+  .dark-mode {
+    --bg-color: #0f172a;
+    --text-color: #f8fafc;
+    --glass-bg: rgba(30, 41, 59, 0.5);
+    --glass-border: rgba(255, 255, 255, 0.1);
+    --glass-shadow: rgba(0, 0, 0, 0.5);
+    --shape1: #3b82f6;
+    --shape2: #8b5cf6;
+  }
+  
+  /* ③ 背景の玉 */
   .bg-shape {
     position: absolute;
     border-radius: 50%;
-    filter: blur(80px); /* めちゃくちゃぼかす */
+    filter: blur(80px);
     z-index: -1;
     transition: background 0.5s ease;
   }
@@ -96,20 +76,20 @@ html, body{
   @keyframes fadeInUp {
     from {
       opacity: 0;
-      transform: translateY(30px); /* 30px下から開始 */
+      transform: translateY(30px);
     }
     to {
       opacity: 1;
-      transform: translateY(0); /* 本来の位置へ */
+      transform: translateY(0);
     }
   }
-
+  
   /* ④ メインのすりガラスの箱 */
   .glass-container {
-    animation: fadeInUp 1.2s ease-out; /* 1.2秒かけて実行*/
+    animation: fadeInUp 1.2s ease-out;
     background: var(--glass-bg);
-    backdrop-filter: blur(15px); /* ★ここがすりガラスにする最大の魔法！★ */
-    -webkit-backdrop-filter: blur(15px); /* スマホ対応 */
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
     border: 1px solid var(--glass-border);
     box-shadow: 0 8px 32px 0 var(--glass-shadow);
     border-radius: 20px;
@@ -118,9 +98,8 @@ html, body{
     max-width: 450px;
     text-align: center;
     z-index: 1;
-
-    box-sizing: border-box; /* パディングを横幅に含める魔法 */
-    margin: 0 auto; /* 確実に左右のド真ん中に配置する */
+    box-sizing: border-box;
+    margin: 0 auto;
   }
   
   /* ⑤ アイコン画像 */
@@ -151,13 +130,13 @@ html, body{
     font-size: 1rem;
     position: relative;
     overflow: hidden;
-    -webkit-mask-image: -webkit-radial-gradient(white, black); /* Safariでのハミ出しを強制的にカットする */
+    -webkit-mask-image: -webkit-radial-gradient(white, black);
     mask-image: radial-gradient(white, black);
-    isolation: isolate; /* 他の重なり（背景の玉など）と光が混ざらないように隔離する */
+    isolation: isolate;
   }
-
+  
   /* 光の筋を作る */
-.glass-btn::after {
+  .glass-btn::after {
     content: "";
     position: absolute;
     top: -50%;
@@ -171,47 +150,43 @@ html, body{
   
   .glass-btn:hover {
     background: rgba(255, 255, 255, 0.2);
-    transform: translateY(-3px); /* マウスを乗せると少し浮く */
+    transform: translateY(-3px);
     box-shadow: 0 5px 15px var(--glass-shadow);
   }
   
-/* ホバーした時に光を右に走らせる */
-.glass-btn:hover::after {
+  /* ホバーした時に光を右に走らせる */
+  .glass-btn:hover::after {
     left: 120%;
   }
-
+  
+  /* リンクを縦に綺麗に並べる設定 */
   ul.links {
     list-style: none;
     padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 15px; /* ボタン同士の隙間 */
+    margin: 30px auto;
   }
-
-/* --- [1] デフォルト（スマホなどの狭い画面）の設定 --- */
-#theme-toggle {
-    /* スマホでは固定配置を解除して、コンテナ内の上部に配置 */
+  
+  /* --- [1] デフォルト（スマホなどの狭い画面）の設定 --- */
+  #theme-toggle {
     position: relative;
     top: 0;
-    right:auto;
+    right: auto;
     left: auto;
-    display: block;
-    width: 80%; /* 他のリンクボタンと横幅を合わせる */
-    /*margin: 0 auto 30px auto;  中央寄せにし、下のアイコンとの間隔を十分に空ける */
+    display: inline-block;
+    width: 80%;
+    max-width: 300px;
     padding: 12px 24px;
-    /* (glass-btn の共通スタイルを引き継ぐため、他は指定しない) */
-
-    /* 見た目の調整 */
-    display: inline-block; /* 真ん中に寄せやすくする */
-    max-width: 300px; /* 広がりすぎないように制限 */
     margin: 10px auto 30px auto;
-  
-    /* 判定をボタンの中に閉じ込める魔法 */
     overflow: hidden;
     isolation: isolate;
   }
-
+  
   @media (max-width: 480px) {
-    /* ① 白い箱（ガラス）の内側の余白を減らして、文字が使える幅を広げる */
     .glass-container {
-        padding: 25px 15px; /* 上下25px, 左右15pxに減らす（元は40px） */
+        padding: 25px 15px;
     }
     .profile p {
       font-size: 3.2vw;
@@ -221,48 +196,25 @@ html, body{
       text-align: center;
     }
   }
-
-  /* 3. パソコン（広い画面）の時だけ右上に飛ばす設定 */
-@media (min-width: 768px) {
-    #theme-toggle {
-      position: fixed; /* 画面に固定 */
-      top: 20px;
-      right: 20px;
-      width: auto; /* 幅を文字数に合わせる */
-      margin: 0;
-      z-index: 100;
-    }
-  }
   
-  /* ガラスコンテナ内のヘッダー（ボタンを囲んでいる場所）の余白を調整 */
-  .glass-container header {
-    margin-bottom: 0; /* ボタンの下の余白をなくす（上のmarginで調整するため） */
-  }
-  /* ------------------------------------------------ */
-  
-  
-  /* --- [2] PC（広い画面）向けの魔法（メディアクエリ） --- */
+  /* --- [2] PC（広い画面）向けの魔法（2つあったのを1つに統合！） --- */
   @media (min-width: 768px) {
-    /* 画面幅が 768px（一般的なタブレット/PC）以上のときだけ、以下の設定を適用（上書き）する */
     #theme-toggle {
-      position: fixed; /* パソコンでは、当初の目的通り右上に固定配置 */
+      position: fixed;
       top: 20px;
       right: 20px;
-      width: auto; /* 幅を自動にする */
-      z-index: 100; /* 一番手前に表示 */
+      width: auto;
+      z-index: 100;
       padding: 10px 20px;
-      margin: 0; /* 固定配置なのでマージンはリセット */
+      margin: 0;
     }
-  
-    /* パソコンではヘッダーの下に余白を作り、コンテナ内をスッキリさせる */
     .glass-container header {
       margin-bottom: 40px; 
     }
   }
-  /* ------------------------------------------------- */
-
+  
   /* コンタクトフォームのスタイル */
-.contact-form {
+  .contact-form {
     display: flex;
     flex-direction: column;
     gap: 15px;
@@ -274,7 +226,6 @@ html, body{
     padding: 10px;
     border-radius: 8px;
     border: 1px solid var(--glass-border);
-    /* 背景を少しだけ透過させてガラスに馴染ませる */
     background: rgba(255, 255, 255, 0.2); 
     color: var(--text-color);
     font-family: inherit;
@@ -287,41 +238,3 @@ html, body{
     background: rgba(0, 0, 0, 0.2);
     color: white;
   }
-
-  /* --- SNSボタンたちのデザイン --- */
-.links {
-    display: flex;
-    flex-direction: column; /* 縦に並べる（横に並べたい場合は row にする） */
-    gap: 15px; /* ボタン同士の隙間 */
-    margin: 30px auto;
-    max-width: 300px; /* ボタンの横幅 */
-}
-
-.links .btn {
-    display: block;
-    padding: 12px 20px;
-    text-align: center;
-    text-decoration: none;
-    color: white;
-    font-weight: bold;
-    border-radius: 8px; /* 角を少し丸く */
-    transition: opacity 0.3s ease; /* ホバー時のフワッと効果 */
-}
-
-/* ボタンにカーソルを乗せたとき少し透明にする */
-.links .btn:hover {
-    opacity: 0.8;
-}
-
-/* 各ボタンのテーマカラー */
-.github-btn {
-    background-color: #333; /* GitHubの黒 */
-}
-
-.x-btn {
-    background-color: #000; /* Xの黒（旧Twitterなら #1DA1F2） */
-}
-
-.other-btn {
-    background-color: #007bff; /* 青色（何かしらのボタン用） */
-}

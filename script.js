@@ -28,7 +28,7 @@ contactForm.addEventListener('submit', async (e) => {
     const message = document.getElementById('sender-message').value;
 
     // 画面上のメッセージを「考え中」に変える
-    responseMessage.textContent = '翔太のAIが考え中...（初回は30秒ほどかかる場合があります）';
+    responseMessage.textContent = 'AI翔太が考え中...（初回は30秒ほどかかる場合があります）';
     responseMessage.style.color = '#333';
 
     try {
