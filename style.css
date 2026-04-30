@@ -287,3 +287,41 @@ html, body{
     background: rgba(0, 0, 0, 0.2);
     color: white;
   }
+
+  /* --- SNSボタンたちのデザイン --- */
+.links {
+    display: flex;
+    flex-direction: column; /* 縦に並べる（横に並べたい場合は row にする） */
+    gap: 15px; /* ボタン同士の隙間 */
+    margin: 30px auto;
+    max-width: 300px; /* ボタンの横幅 */
+}
+
+.links .btn {
+    display: block;
+    padding: 12px 20px;
+    text-align: center;
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    border-radius: 8px; /* 角を少し丸く */
+    transition: opacity 0.3s ease; /* ホバー時のフワッと効果 */
+}
+
+/* ボタンにカーソルを乗せたとき少し透明にする */
+.links .btn:hover {
+    opacity: 0.8;
+}
+
+/* 各ボタンのテーマカラー */
+.github-btn {
+    background-color: #333; /* GitHubの黒 */
+}
+
+.x-btn {
+    background-color: #000; /* Xの黒（旧Twitterなら #1DA1F2） */
+}
+
+.other-btn {
+    background-color: #007bff; /* 青色（何かしらのボタン用） */
+}
