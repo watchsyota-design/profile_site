@@ -1,17 +1,16 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>My Profile</title>
-        <link rel="stylesheet" href="style.css">
-    </head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Profile</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="bg-shape shape1"></div>
+  <div class="bg-shape shape1"></div>
   <div class="bg-shape shape2"></div>
 
+  <!-- 🌟 ここから大きなすりガラスの箱がスタート 🌟 -->
   <div class="glass-container">
     <header>
       <button id="theme-toggle" class="glass-btn">🌙 ダークモード</button>
@@ -28,27 +27,29 @@
       <p>休日はスト6をしたり，NBAを見ています。</p>
     </div>
 
-      <hr style="border: none; border-top: 1px solid var(--glass-border); margin: 30px 0;">
+    <hr style="border: none; border-top: 1px solid var(--glass-border); margin: 30px 0;">
       
     <ul class="links">
       <li><a href="https://github.com/watchsyota-design/profile_site" class="glass-btn">GitHub</a></li>
       <li><a href="#" class="glass-btn">何かしら</a></li>
       <li><a href="#" class="glass-btn">X (Twitter)</a></li>
     </ul>
-  </div>
 
-  <hr style="border: none; border-top: 1px solid var(--glass-border); margin: 30px 0;">
+    <hr style="border: none; border-top: 1px solid var(--glass-border); margin: 30px 0;">
 
-  <div class="contact-section">
-    <h3>Gemini搭載：AI翔太と話す</h3>
-    <form id="contact-form" class="contact-form">
-      <input type="text" id="sender-name" placeholder="お名前" required>
-      <textarea id="sender-message" placeholder="例：スト6のメインキャラは？" rows="3" required></textarea>
-      <button type="submit" class="glass-btn">AIに質問する</button>
-    </form>
-    <!-- APIからの返事を表示する場所 -->
-    <p id="response-message" style="margin-top: 10px; font-size: 0.9rem;"></p>
-  </div>
+    <!-- AIチャットも箱の中にちゃんと入れる -->
+    <div class="contact-section">
+      <h3>Gemini搭載：AI翔太と話す</h3>
+      <form id="contact-form" class="contact-form">
+        <input type="text" id="sender-name" placeholder="お名前" required>
+        <textarea id="sender-message" placeholder="例：スト6のメインキャラは？" rows="3" required></textarea>
+        <button type="submit" class="glass-btn">AIに質問する</button>
+      </form>
+      <!-- APIからの返事を表示する場所 -->
+      <p id="response-message" style="margin-top: 10px; font-size: 0.9rem;"></p>
+    </div>
+
+  </div> <!-- 🌟 ここでようやくすりガラスの箱を閉じる！ 🌟 -->
 
   <script src="script.js"></script>
 </body>
