@@ -64,7 +64,7 @@ contactForm.addEventListener('submit', async (e) => {
 // ==========================================
 // いいねボタンの機能
 // ==========================================
-const API_URL = "http://localhost:8001"; // バックエンドのURL
+const API_URL = "https://portfolio-api-syota.onrender.com"; // バックエンドのURL
 
 // ① サイトを開いた時に「今のいいね数」を取得して表示する
 async function fetchLikes() {
