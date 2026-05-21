@@ -61,3 +61,41 @@ contactForm.addEventListener('submit', async (e) => {
         responseMessage.textContent = 'サーバーに接続できませんでした。Renderが起動しているか確認してください。';
     }
 });
+// ==========================================
+// いいねボタンの機能
+// ==========================================
+const API_URL = "http://localhost:8001"; // バックエンドのURL
+
+// ① サイトを開いた時に「今のいいね数」を取得して表示する
+async function fetchLikes() {
+    try {
+        const response = await fetch(`${API_URL}/likes`);
+        const data = await response.json();
+        document.getElementById("like-count").innerText = data.likes;
+    } catch (error) {
+        console.error("いいねの取得に失敗しました", error);
+    }
+}
+
+// ② ボタンを押した時に「いいねを+1」して画面を更新する
+async function addLike() {
+    try {
+        const response = await fetch(`${API_URL}/likes`, { method: "POST" });
+        const data = await response.json();
+        document.getElementById("like-count").innerText = data.likes;
+        
+        // 押した感触を出すためのアニメーション
+        const btn = document.getElementById("like-button");
+        const originalText = btn.innerText;
+        btn.innerText = "✨ Thanks! ✨";
+        setTimeout(() => btn.innerText = originalText, 1500);
+    } catch (error) {
+        console.error("いいねの送信に失敗しました", error);
+    }
+}
+
+// ③ ボタンにクリックした時の動作をセットする
+document.getElementById("like-button").addEventListener("click", addLike);
+
+// ④ ページが読み込まれたら最初に①を実行する
+fetchLikes();
