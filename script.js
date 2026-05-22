@@ -108,7 +108,7 @@ fetchLikes();
 const glassCard = document.querySelector('.glass-container');
 
 // 2. 傾き具合の調整（数字が大きいほど激しく傾く）
-const sensitivity = 15; 
+const sensitivity = 5; 
 
 // 3. マウスが箱の上を動いた時の処理
 glassCard.addEventListener('mousemove', (e) => {
