@@ -100,8 +100,18 @@
     z-index: 1;
     box-sizing: border-box;
     margin: 0 auto;
+
+    /* 傾きが元に戻るときの滑らかさを設定 */
+    transition: transform 0.5s ease-out, box-shadow 0.5s ease-out;
+    /* パソコンに「この要素は動くよ」と伝えて動きを軽くする */
+    will-change: transform;
   }
   
+  /* マウスが乗った時に少し浮き上がるような豪華な影にする */
+  .glass-container:hover {
+    box-shadow: 0 15px 45px 0 rgba(31, 38, 135, 0.4); 
+  }
+
   /* ⑤ アイコン画像 */
   .icon {
     width: 100px;

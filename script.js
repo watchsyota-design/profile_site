@@ -99,3 +99,48 @@ document.getElementById("like-button").addEventListener("click", addLike);
 
 // ④ ページが読み込まれたら最初に①を実行する
 fetchLikes();
+
+// ==========================================
+// 3Dティルト（傾き）ホバーエフェクト
+// ==========================================
+
+// 1. 傾かせる対象（すりガラスの箱）を取得
+const glassCard = document.querySelector('.glass-container');
+
+// 2. 傾き具合の調整（数字が大きいほど激しく傾く）
+const sensitivity = 15; 
+
+// 3. マウスが箱の上を動いた時の処理
+glassCard.addEventListener('mousemove', (e) => {
+    // 箱の大きさと位置（中心点）を計算
+    const rect = glassCard.getBoundingClientRect();
+    const centerX = rect.left + rect.width / 2;
+    const centerY = rect.top + rect.height / 2;
+
+    // マウスが中心からどれくらい離れているかを計算
+    const mouseX = e.clientX - centerX;
+    const mouseY = e.clientY - centerY;
+
+    // 中心からの距離を、傾ける角度に変換（シーソーの計算）
+    // - X方向の距離で、Y軸を中心に回転させる
+    // - Y方向の距離で、X軸を中心に回転させる（上下は反転させる）
+    const rotateX = (-mouseY / (rect.height / 2)) * sensitivity;
+    const rotateY = (mouseX / (rect.width / 2)) * sensitivity;
+
+    // 4. CSSのtransformプロパティをリアルタイムに書き換える
+    // perspective(1000px) で奥行き感を出し、rotateで回転させる
+    glassCard.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+});
+
+// 5. マウスが箱に入った瞬間の処理（動きを機敏にするためにTransitionを一時的に消す）
+glassCard.addEventListener('mouseenter', () => {
+    glassCard.style.transition = 'none';
+});
+
+// 6. マウスが箱から出た瞬間の処理（滑らかに元に戻す）
+glassCard.addEventListener('mouseleave', () => {
+    // CSSで設定した滑らかなtransitionを元に戻す
+    glassCard.style.transition = 'transform 0.5s ease-out, box-shadow 0.5s ease-out';
+    // 傾きを0度（平ら）に戻す
+    glassCard.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg)';
+});
